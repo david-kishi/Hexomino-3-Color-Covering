@@ -32,6 +32,24 @@ class _masterMeta {
       this.cur_col += 1;
     }
   }
+
+  // Check if matrix is filled
+  checkFin() {
+    for (let i = 0; i < 15; i++) {
+      let temp = this.mat[i].reduce(function (a, b) {
+        return a + b;
+      }, 0);
+      console.log(`Row ${i}: ${temp}`);
+      // TODO Possibly check value and return true or false
+    }
+  }
+
+  // Resets the master matrix
+  reset() {
+    this.cur_row = 0;
+    this.cur_col = 0;
+    this.mat = [...m_mat];
+  }
 }
 
 /**
@@ -190,6 +208,7 @@ function draw_update() // Update our display.
   } else {
     console.log("fin");
     g_stop = !g_stop;
+
   }
 }
 
