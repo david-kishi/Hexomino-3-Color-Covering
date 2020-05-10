@@ -18,7 +18,23 @@ class _masterMeta {
   constructor() {
     this.cur_row = 0;
     this.cur_col = 0;
-    this.mat = [...m_mat];
+    this.mat = [
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    ];
   }
 
   // Update to next coordinate
@@ -30,6 +46,9 @@ class _masterMeta {
       this.cur_col += 4;
     } else if (this.cur_col != 14) {
       this.cur_col += 1;
+    } else {
+      this.cur_col = 15;
+      this.cur_row = 15;
     }
   }
 
@@ -39,16 +58,34 @@ class _masterMeta {
       let temp = this.mat[i].reduce(function (a, b) {
         return a + b;
       }, 0);
-      console.log(`Row ${i}: ${temp}`);
-      // TODO Possibly check value and return true or false
+      if (temp != 15) {
+        return false;
+      }
     }
+    return true;
   }
 
   // Resets the master matrix
   reset() {
     this.cur_row = 0;
     this.cur_col = 0;
-    this.mat = [...m_mat];
+    this.mat = [
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    ];
   }
 }
 
@@ -74,6 +111,11 @@ class _hexPool {
       }
     }
     return arr;
+  }
+
+  // Reset pool
+  reset() {
+    this.pool = _hexPool._initPool();
   }
 
   /**
@@ -200,15 +242,33 @@ function setup() // P5 Setup Fcn
   rect(120, 120, 60, 60);
 }
 
+function reset_canvas() {
+  // Create grid
+  let sz = g_canvas.cell_size;
+  let width = sz * g_canvas.wid; // Our 'canvas' uses cells of given size, not 1x1 pixels.
+  let height = sz * g_canvas.hgt;
+  background(0);
+  draw_grid(20, 50, 'white');
+
+  // 3x3 Center Cutout
+  fill("white");
+  noStroke();
+  rect(120, 120, 60, 60);
+}
+
 function draw_update() // Update our display.
 {
-  if (hexPool.pool.length != 0 && masterMeta.cur_col + masterMeta.cur_row != 28) {
-    findHex();
-    masterMeta.nextCoord();
+  if (hexPool.pool.length != 0 && masterMeta.cur_col + masterMeta.cur_row <= 28) {
+    findHex(); // Look for a hexomino that fits
+    masterMeta.nextCoord(); // Update to next coordinate on matrix
   } else {
-    console.log("fin");
-    g_stop = !g_stop;
-
+    if (masterMeta.checkFin()) { // Check if the graph is filled completely
+      g_stop = !g_stop;
+    } else { // If not, reset graph and hexomino ID pool.
+      reset_canvas();
+      masterMeta.reset();
+      hexPool.reset();
+    }
   }
 }
 
