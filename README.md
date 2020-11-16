@@ -1,11 +1,15 @@
 # Hexomino 3-Color Covering
 
+https://www.knytes.com/Hexomino-3-Color-Covering/
+
 ## Class Number
+
 California State University Fullerton</br>
 CPSC 335-02</br>
 Algorithm Engineering
 
 ## Project Number and Name
+
 No.: 3</br>
 Name: Hexomino 3-Color Covering</br>
 
@@ -15,9 +19,11 @@ Members:
 * David Nguyen
 
 ## Intro
+
 The purpose of this project is to demonstrate Hexominoes filling a 15x15 grid with a 3x3 center cutout.
 
 ## Contents
+
 img/GitHub-Mark-32px.png - GitHub Logo</br>
 img/LinkedIn-Bug-32px.png - LinkedIn Logo</br>
 img/HexoDemo.gif - Sorting Algorithm Race Preview</br>
@@ -31,6 +37,7 @@ README.md - What you're currently reading.</br>
 README.txt - Plain ASCII of what you're currently reading.</br>
 
 ## External Requirements
+
 Please use a browser with ES6 capabilities.
 | Browser | Minimum Version |
 |---------|-----------------|
@@ -41,19 +48,24 @@ Please use a browser with ES6 capabilities.
 | Opera   | 38              |
 
 ## Setup and Installation
+
 Run index.html on a local server or open in browser.</br>
 You may also visit https://www.knytes.com/Hexomino-3-Color-Covering/
 
 ## Sample Invocation
+
 ![Hexomino Demo](img/HexoDemo.gif)
 
 ## Features
+
  - Press any button to resume/pause
  - ***(Missing)*** A perfect hexomino cover.
  - ***(Missing)*** A 3 color cover.
 
 ## Bugs
+
 None reported.
 
 ## Contact
+
 David Nguyen - david@knytes.com
